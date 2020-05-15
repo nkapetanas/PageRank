@@ -21,6 +21,9 @@ class Graph(object):
             return True
         return False
 
+    def get_nodes(self):
+        return self.nodes.keys()
+
     def print_graph(self):
         for key in sorted(list(self.nodes.keys())):
             print(key + str(self.nodes[key].connected_to))
