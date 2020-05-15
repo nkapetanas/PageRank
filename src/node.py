@@ -1,4 +1,4 @@
-class Vertex:
+class Node:
     def __init__(self, key):
         self.key = key
         self.connected_to = list()
