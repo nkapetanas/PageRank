@@ -28,18 +28,23 @@ class Graph(object):
         for key in sorted(list(self.nodes.keys())):
             print(key + str(self.nodes[key].connected_to))
 
+    def get_connections_from_specific_node(self, key):
+        return self.nodes[key].connected_to
 
-g = Graph()
-a = Node('A')
-g.add_node(a)
-g.add_node(Node('B'))
+    def get_number_of_connections_from_specific_node(self, key):
+        return len(self.nodes[key].connected_to)
 
-for i in range(ord('A'), ord('K')):
-    g.add_node(Node(chr(i)))
-
-edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
-
-for edge in edges:
-    g.add_edge(edge[:1], edge[1:])
-
-g.print_graph()
+# g = Graph()
+# a = Node('A')
+# g.add_node(a)
+# g.add_node(Node('B'))
+#
+# for i in range(ord('A'), ord('K')):
+#     g.add_node(Node(chr(i)))
+#
+# edges = ['AB', 'AE', 'BF', 'CG', 'DE', 'DH', 'EH', 'FG', 'FI', 'FJ', 'GJ', 'HI']
+#
+# for edge in edges:
+#     g.add_edge(edge[:1], edge[1:])
+#
+# g.print_graph()
