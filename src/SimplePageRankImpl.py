@@ -4,9 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-# WEB_GOOGLE_TEXT_FILE = "../data/web-Google.txt"
-#WEB_GOOGLE_TEXT_FILE = "../data/webSample2.txt"
-WEB_GOOGLE_TEXT_FILE = "../data/webSample.txt"
+WEB_GOOGLE_TEXT_FILE = "../data/web-Google.txt"
+# WEB_GOOGLE_TEXT_FILE = "../data/webSample2.txt"
+#WEB_GOOGLE_TEXT_FILE = "../data/webSample.txt"
 TIME_PRINT = "--- %s seconds ---"
 
 
@@ -80,10 +80,7 @@ def get_n_elements_dict(n, reversed_list, sorted_dict):
         print("key {}, value {} ".format(key, sorted_dict[key]))
 
 
-def compute_page_rank(a, iter_number):
-    text = read_file(WEB_GOOGLE_TEXT_FILE)
-
-    graph = initiliaze_graph(text)
+def compute_page_rank(graph, iter_number):
 
     rankings = page_rank(graph, iter_number)
 
@@ -93,11 +90,7 @@ def compute_page_rank(a, iter_number):
     get_n_elements_dict(20, True, rankings_sorted)
 
 
-def compute_page_rank_improved(a, iter_number):
-    text = read_file(WEB_GOOGLE_TEXT_FILE)
-
-    graph = initiliaze_graph(text)
-
+def compute_page_rank_improved(graph, a, iter_number):
     rankings = page_rank_imporved(graph, a, iter_number)
 
     rankings_sorted = {k: v for k, v in sorted(rankings.items(), key=lambda item: item[1])}
@@ -113,26 +106,70 @@ def create_histogram(x, y):
     plt.show()
 
 
-start_time = time.time()
-compute_page_rank(0.2, 50)
-print(TIME_PRINT % (time.time() - start_time))
+text = read_file(WEB_GOOGLE_TEXT_FILE)
 
 start_time = time.time()
-compute_page_rank(0.2, 100)
+graph = initiliaze_graph(text)
 print(TIME_PRINT % (time.time() - start_time))
+print("Graph Initiliazed Time")
 
 start_time = time.time()
-compute_page_rank(0.2, 200)
+compute_page_rank(graph, 10)
 print(TIME_PRINT % (time.time() - start_time))
+print("Above results for simple pagerank, 10 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(0.2, 50)
+compute_page_rank(graph, 50)
 print(TIME_PRINT % (time.time() - start_time))
+print("Above results for simple pagerank, 50 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(0.2, 100)
+compute_page_rank(graph, 100)
 print(TIME_PRINT % (time.time() - start_time))
+print("Above results for simple pagerank, 100 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(0.2, 200)
+compute_page_rank(graph, 200)
 print(TIME_PRINT % (time.time() - start_time))
+print("Above results for simple pagerank, 200 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.2, 10)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,2, 10 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.85, 10)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,85, 10 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.85, 50)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,85, 50 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.85, 100)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,85, 100 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.85, 200)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,85, 200 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.2, 50)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,2, 50 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.2, 100)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,2, 100 iterations")
+
+start_time = time.time()
+compute_page_rank_improved(graph, 0.2, 200)
+print(TIME_PRINT % (time.time() - start_time))
+print("Above results for improved pagerank, a=0,2, 200 iterations")
+
