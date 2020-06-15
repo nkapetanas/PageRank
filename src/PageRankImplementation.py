@@ -84,15 +84,16 @@ def compute_page_rank_improved(graph, a, iter_number):
     get_n_elements_dict(20, False, rankings_sorted)
     get_n_elements_dict(20, True, rankings_sorted)
 
-def create_histogram(x, y):
+    return rankings
 
-    max_value = max(x)
-    min_value = min(x)
+def create_histogram(y_counts, x_values):
 
-    bins = np.logspace(0, max_value - min_value, 50)
-    plt.hist(y, bins=bins)
-    plt.xlabel('Pagerank')
-    plt.ylabel('Count')
+    bins = [pow(10, i) for i in range(0, int(np.mean(x_values)), 1)]
+    plt.hist(y_counts, bins=bins)
+    plt.yscale("log")
+    plt.xscale("log")
+    plt.xlabel("Pagerank")
+    plt.ylabel("Count")
     plt.show()
 
 def compute_histogram(rankings):
@@ -114,7 +115,7 @@ with open('../data/preprocessed_web-Google.csv', 'rt')as f:
 
 
 print(TIME_PRINT % (time.time() - start_time))
-print("Graph Initiliazed Time")
+print("Graph Initialized Time")
 
 start_time = time.time()
 rankings = compute_page_rank(data, 10)
@@ -123,56 +124,67 @@ print(TIME_PRINT % (time.time() - start_time))
 print("Above results for simple pagerank, 10 iterations")
 
 start_time = time.time()
-compute_page_rank(data, 50)
+rankings = compute_page_rank(data, 50)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for simple pagerank, 50 iterations")
 
 start_time = time.time()
-compute_page_rank(data, 100)
+rankings = compute_page_rank(data, 100)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for simple pagerank, 100 iterations")
 
 start_time = time.time()
-compute_page_rank(data, 200)
+rankings = compute_page_rank(data, 200)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for simple pagerank, 200 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.2, 10)
+rankings = compute_page_rank_improved(data, 0.2, 10)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,2, 10 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.85, 10)
+rankings = compute_page_rank_improved(data, 0.85, 10)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,85, 10 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.85, 50)
+rankings = compute_page_rank_improved(data, 0.85, 50)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,85, 50 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.85, 100)
+rankings = compute_page_rank_improved(data, 0.85, 100)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,85, 100 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.85, 200)
+rankings = compute_page_rank_improved(data, 0.85, 200)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,85, 200 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.2, 50)
+rankings =compute_page_rank_improved(data, 0.2, 50)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,2, 50 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.2, 100)
+rankings =  compute_page_rank_improved(data, 0.2, 100)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,2, 100 iterations")
 
 start_time = time.time()
-compute_page_rank_improved(data, 0.2, 200)
+rankings =  compute_page_rank_improved(data, 0.2, 200)
+compute_histogram(rankings)
 print(TIME_PRINT % (time.time() - start_time))
 print("Above results for improved pagerank, a=0,2, 200 iterations")
